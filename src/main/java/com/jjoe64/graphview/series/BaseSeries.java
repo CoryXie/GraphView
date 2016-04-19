@@ -350,8 +350,10 @@ public abstract class BaseSeries<E extends DataPointInterface> implements Series
      */
     public void resetData(E[] data) {
         mData.clear();
-        for (E d : data) {
-            mData.add(d);
+        if (data != null) {
+            for (E d : data) {
+                mData.add(d);
+            }
         }
         checkValueOrder(null);
 
