@@ -122,4 +122,11 @@ public interface Series<E extends DataPointInterface> {
      * @return whether there are data points
      */
     boolean isEmpty();
+
+    /**
+     * called when the data was reset
+     *
+     * @param E[] data
+     */
+    void resetData(E[] data);
 }

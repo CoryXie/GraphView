@@ -545,4 +545,10 @@ public class GraphView extends View {
         mSeries.remove(series);
         onDataChanged(false, false);
     }
+
+    public void resetAllSeries() {
+        for (Series s : mSeries) {
+            s.resetData(null);
+        }
+    }
 }
