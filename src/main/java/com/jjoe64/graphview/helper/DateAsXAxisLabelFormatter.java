@@ -24,8 +24,10 @@ import android.content.Context;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Helper class to use date objects as x-values.
@@ -44,7 +46,7 @@ public class DateAsXAxisLabelFormatter extends DefaultLabelFormatter {
      * the date format that will convert
      * the unix timestamp to string
      */
-    protected final DateFormat mDateFormat;
+    protected final SimpleDateFormat mDateFormat;
 
     /**
      * calendar to avoid creating new date objects
@@ -58,7 +60,7 @@ public class DateAsXAxisLabelFormatter extends DefaultLabelFormatter {
      * @param context the application context
      */
     public DateAsXAxisLabelFormatter(Context context) {
-        mDateFormat = android.text.format.DateFormat.getDateFormat(context);
+        mDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
         mCalendar = Calendar.getInstance();
     }
 
@@ -69,7 +71,7 @@ public class DateAsXAxisLabelFormatter extends DefaultLabelFormatter {
      * @param context the application context
      * @param dateFormat custom date format
      */
-    public DateAsXAxisLabelFormatter(Context context, DateFormat dateFormat) {
+    public DateAsXAxisLabelFormatter(Context context, SimpleDateFormat dateFormat) {
         mDateFormat = dateFormat;
         mCalendar = Calendar.getInstance();
     }
@@ -86,7 +88,7 @@ public class DateAsXAxisLabelFormatter extends DefaultLabelFormatter {
         if (isValueX) {
             // format as date
             mCalendar.setTimeInMillis((long) value);
-            return mDateFormat.format(mCalendar.getTimeInMillis());
+            return mDateFormat.format(mCalendar.getTime());
         } else {
             return super.formatLabel(value, isValueX);
         }
